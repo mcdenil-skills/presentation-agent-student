@@ -13,8 +13,7 @@ import sys
 def python_candidates(platform):
     """Команды-кандидаты интерпретатора по ОС, в порядке предпочтения.
 
-    macOS: системный /usr/bin/python3 (3.9.x) первым - brew-питоны
-    (3.12/3.14) битые для этого окружения, см. tools/rebuild_venv.sh.
+    Выбираем первый доступный Python 3.11+.
     """
     if platform == "darwin":
         return ["/usr/bin/python3", "python3"]
@@ -49,6 +48,10 @@ def write_env_from_example(example_path, env_path):
     if os.path.exists(env_path):
         return False
     shutil.copyfile(example_path, env_path)
+    try:
+        os.chmod(env_path, 0o600)
+    except OSError:
+        pass
     return True
 
 
@@ -65,7 +68,7 @@ def write_from_example(example_path, target_path):
 
 
 def find_python(platform=None):
-    """Находит рабочий python >= 3.9 по кандидатам ОС.
+    """Находит рабочий Python >= 3.11 по кандидатам ОС.
 
     Возвращает argv-список (например ['/usr/bin/python3'] или ['py', '-3'])
     или None, если ничего подходящего не нашлось.
@@ -85,6 +88,6 @@ def find_python(platform=None):
                 major, minor = (int(x) for x in out.stdout.strip().split("."))
             except ValueError:
                 continue
-            if (major, minor) >= (3, 9):
+            if (major, minor) >= (3, 11):
                 return argv
     return None

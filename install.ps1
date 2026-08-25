@@ -7,7 +7,7 @@ $Dir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $py = "py"
 if (-not (Get-Command $py -ErrorAction SilentlyContinue)) { $py = "python" }
 if (-not (Get-Command $py -ErrorAction SilentlyContinue)) {
-    Write-Host "Не найден Python - поставь Python 3.9+ с python.org (галочка 'Add to PATH')"
+    Write-Host "Не найден Python - поставь Python 3.11+ с python.org (галочка 'Add to PATH')"
     exit 1
 }
 Write-Host "Запускаю настройку через $py ..."

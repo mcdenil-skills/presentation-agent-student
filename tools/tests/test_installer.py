@@ -1,5 +1,10 @@
 import os
+import stat
+from types import SimpleNamespace
+
+import tools.installer as installer
 from tools.installer import (
+    find_python,
     python_candidates,
     venv_python_path,
     windows_shim_bat,
@@ -9,8 +14,19 @@ from tools.installer import (
 
 
 def test_python_candidates_macos_prefers_system():
-    # macOS: системный /usr/bin/python3 первым - brew-питоны битые для этого окружения
+    # Кандидаты проверяются по очереди; find_python отсеет версии ниже 3.11.
     assert python_candidates("darwin")[0] == "/usr/bin/python3"
+
+
+def test_find_python_rejects_310_and_accepts_311(monkeypatch):
+    monkeypatch.setattr(installer, "python_candidates", lambda _platform: ["python-old", "python-ok"])
+
+    def fake_run(argv, **_kwargs):
+        version = "3.10\n" if argv[0] == "python-old" else "3.11\n"
+        return SimpleNamespace(returncode=0, stdout=version)
+
+    monkeypatch.setattr(installer.subprocess, "run", fake_run)
+    assert find_python("test") == ["python-ok"]
 
 
 def test_python_candidates_windows():
@@ -41,6 +57,8 @@ def test_write_env_creates_when_missing(tmp_path):
     env = tmp_path / ".env"
     assert write_env_from_example(str(ex), str(env)) is True
     assert env.read_text() == "PEXELS_API_KEY=\n"
+    if os.name != "nt":
+        assert stat.S_IMODE(env.stat().st_mode) == 0o600
 
 
 def test_write_env_idempotent_does_not_overwrite(tmp_path):

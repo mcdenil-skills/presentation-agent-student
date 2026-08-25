@@ -18,7 +18,7 @@
 с каждой частью отдельно и не перегружать контекст.
 """
 
-from __future__ import annotations  # аннотации-«ленивые», совместимость с Python 3.9
+from __future__ import annotations
 
 import sys
 import re

@@ -46,3 +46,5 @@ tools/venv/bin/python tools/check_slides.py path/to/SLIDES.txt
 ```bash
 tools/venv/bin/python -m pytest tools/tests -q
 ```
+
+`requirements.in` хранит прямые зависимости, а `requirements.txt` — полный фиксированный набор с SHA-256-хэшами. Перед релизом CI проверяет его через `pip-audit`; Dependabot еженедельно предлагает обновления.

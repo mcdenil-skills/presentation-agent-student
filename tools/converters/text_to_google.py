@@ -78,6 +78,15 @@ except ImportError:
 SCRIPT_DIR = Path(__file__).parent
 OAUTH_CLIENT_FILE = SCRIPT_DIR / "oauth_client.json"  # OAuth credentials (скачивается из Google Cloud)
 TOKEN_FILE = SCRIPT_DIR / "token.json"  # Сохранённый токен (создаётся автоматически)
+
+
+def save_credentials(credentials, token_file=TOKEN_FILE):
+    """Сохраняет OAuth-токен с правами только для владельца файла."""
+    token_file.write_text(credentials.to_json(), encoding="utf-8")
+    try:
+        token_file.chmod(0o600)
+    except OSError:
+        pass
 CONFIG_FILE = SCRIPT_DIR / "config.json"
 
 
@@ -164,8 +173,7 @@ def get_credentials():
             print("✅ Авторизация успешна!")
 
         # Сохраняем токен для будущих запусков
-        with open(TOKEN_FILE, 'w') as token:
-            token.write(credentials.to_json())
+        save_credentials(credentials)
 
     return credentials
 

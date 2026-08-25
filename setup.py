@@ -64,12 +64,12 @@ def build_venv():
     """Собирает venv нужным питоном и ставит зависимости. На Windows кладёт шим."""
     py = find_python()
     if not py:
-        print("[ПРОБЛЕМА] не найден Python 3.9+ - поставь Python и повтори")
+        print("[ПРОБЛЕМА] не найден Python 3.11+ - поставь Python и повтори")
         return False
     print("Python для venv:", " ".join(py))
     subprocess.run(py + ["-m", "venv", VENV_DIR], check=True)
     vpy = venv_python_path(VENV_DIR, sys.platform)
-    subprocess.run([vpy, "-m", "pip", "install", "--upgrade", "pip"], check=True)
+    subprocess.run([vpy, "-m", "pip", "install", "--upgrade", "pip", "setuptools"], check=True)
     subprocess.run([vpy, "-m", "pip", "install", "-r", REQS], check=True)
     if sys.platform.startswith("win"):
         bindir = os.path.join(VENV_DIR, "bin")
@@ -118,6 +118,10 @@ def google_auth():
     if not os.path.exists(oauth):
         print("[ПРОПУСК] oauth_client.json не найден - Google Slides можно подключить позже")
         return
+    try:
+        os.chmod(oauth, 0o600)
+    except OSError:
+        pass
     subprocess.run([vpy, auth], check=False)
 
 
