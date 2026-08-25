@@ -20,3 +20,14 @@ projects/**
 knowledge/private/**
 knowledge/design/*.json
 _progress.md
+
+# Личная настройка автора. В Git лежат только *.example.md.
+/SOUL.md
+/MEMORY.md
+/knowledge/audience/portrait.md
+/knowledge/audience/voice-bank.md
+/knowledge/product/product.md
+/knowledge/offers/offer.md
+/knowledge/cases/cases-bank.md
+/knowledge/presentations/lessons/registry.md
+/knowledge/presentations/webinars/registry.md

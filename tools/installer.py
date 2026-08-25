@@ -52,6 +52,18 @@ def write_env_from_example(example_path, env_path):
     return True
 
 
+def write_from_example(example_path, target_path):
+    """Создаёт локальную рабочую копию из *.example.md.
+
+    Существующий файл не перезаписывает. Родительскую папку создаёт сам.
+    """
+    if os.path.exists(target_path):
+        return False
+    os.makedirs(os.path.dirname(target_path) or ".", exist_ok=True)
+    shutil.copyfile(example_path, target_path)
+    return True
+
+
 def find_python(platform=None):
     """Находит рабочий python >= 3.9 по кандидатам ОС.
 

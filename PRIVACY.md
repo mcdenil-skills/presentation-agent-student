@@ -6,7 +6,7 @@
 
 - `.env`, токены, OAuth-файлы, пароли и API-ключи;
 - реальные Google Slides/Drive ID и личные ссылки;
-- `MEMORY.md` после заполнения личными фактами;
+- локальные `SOUL.md`, `MEMORY.md` и заполненные файлы `knowledge/`;
 - дневники `memory/*.md`;
 - реальные проекты из `projects/`;
 - анкеты, звонки, транскрипты и дословные ответы клиентов;
@@ -25,4 +25,4 @@ gitleaks git . --redact
 
 ## Как хранить свою работу
 
-Рабочие материалы кладите в `projects/`, личную память - в `memory/`, настройки Google - в `tools/converters/config.json`. Эти пути уже закрыты `.gitignore`.
+Рабочие материалы кладите в `projects/`, личную память - в `memory/`, настройки Google - в `tools/converters/config.json`. Личные `SOUL.md`, `MEMORY.md` и рабочие базы `knowledge/` тоже закрыты `.gitignore`. В Git остаются только пустые `*.example.md`.

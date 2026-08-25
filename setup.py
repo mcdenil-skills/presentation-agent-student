@@ -19,10 +19,23 @@ from tools.installer import (  # noqa: E402
     venv_python_path,
     windows_shim_bat,
     write_env_from_example,
+    write_from_example,
 )
 
 VENV_DIR = os.path.join(ROOT, "tools", "venv")
 REQS = os.path.join(ROOT, "tools", "requirements.txt")
+
+PERSONAL_TEMPLATES = (
+    ("SOUL.example.md", "SOUL.md"),
+    ("MEMORY.example.md", "MEMORY.md"),
+    ("knowledge/audience/portrait.example.md", "knowledge/audience/portrait.md"),
+    ("knowledge/audience/voice-bank.example.md", "knowledge/audience/voice-bank.md"),
+    ("knowledge/product/product.example.md", "knowledge/product/product.md"),
+    ("knowledge/offers/offer.example.md", "knowledge/offers/offer.md"),
+    ("knowledge/cases/cases-bank.example.md", "knowledge/cases/cases-bank.md"),
+    ("knowledge/presentations/lessons/registry.example.md", "knowledge/presentations/lessons/registry.md"),
+    ("knowledge/presentations/webinars/registry.example.md", "knowledge/presentations/webinars/registry.md"),
+)
 
 
 def _have(cmd):
@@ -89,6 +102,15 @@ def setup_local_config():
     print("[OK] config.json создан из безопасного шаблона")
 
 
+def setup_personal_templates():
+    """Создаёт игнорируемые Git локальные файлы для данных автора."""
+    created = 0
+    for example, target in PERSONAL_TEMPLATES:
+        if write_from_example(os.path.join(ROOT, example), os.path.join(ROOT, target)):
+            created += 1
+    print(f"[OK] локальные шаблоны: создано {created}, существующие не тронуты")
+
+
 def google_auth():
     vpy = venv_python_path(VENV_DIR, sys.platform)
     auth = os.path.join(ROOT, "tools", "converters", "google_auth.py")
@@ -118,6 +140,7 @@ def main():
         return 1
     setup_env()
     setup_local_config()
+    setup_personal_templates()
     print("\n--- Google-авторизация ---")
     google_auth()
     print("\n--- Смоук-тест ---")
