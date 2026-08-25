@@ -1,0 +1,73 @@
+# Установка
+
+## 1. Что понадобится
+
+- Git;
+- Codex или Claude Code;
+- Python 3.9+ - только если нужны инструменты обработки данных и Google Slides.
+
+## 2. Скачать репозиторий
+
+После публикации замените `<OWNER>` на имя владельца репозитория:
+
+```bash
+git clone https://github.com/<OWNER>/presentation-agent-student.git
+cd presentation-agent-student
+```
+
+## 3. Базовая настройка агента
+
+1. Откройте `SOUL.md` и опишите свой голос, стиль и запреты.
+2. Заполните шаблоны в `knowledge/` только реальными данными.
+3. Откройте эту папку в Codex или Claude Code.
+
+Для работы только с текстами этого достаточно.
+
+## 4. Установить Python-инструменты
+
+macOS или Linux:
+
+```bash
+bash install.sh
+```
+
+Windows PowerShell:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File install.ps1
+```
+
+Установщик создаст локальные `.env` и `tools/converters/config.json`. Эти файлы игнорируются Git.
+
+## 5. Подключить Google Slides - по желанию
+
+Создайте собственный Desktop OAuth client в Google Cloud и положите скачанный файл сюда:
+
+```text
+tools/converters/oauth_client.json
+```
+
+Никому не пересылайте этот файл и не добавляйте его в Git. При первом запуске авторизации появится локальный `token.json`, он тоже исключён из Git.
+
+Затем впишите ID собственного шаблона и папки Google Drive в:
+
+```text
+tools/converters/config.json
+```
+
+## 6. Ключи для изображений - по желанию
+
+В локальном `.env` можно указать:
+
+- `PEXELS_API_KEY` - бесплатный поиск фотографий;
+- `OPENAI_API_KEY` - платная генерация изображений.
+
+Без этих ключей текстовая методология продолжает работать.
+
+## Проверка
+
+```bash
+tools/venv/bin/python -m pytest tools/tests -q
+```
+
+Если Python-инструменты не нужны, начните с персонализации `SOUL.md` и баз `knowledge/`.

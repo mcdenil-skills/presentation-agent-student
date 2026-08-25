@@ -1,0 +1,9 @@
+openpyxl==3.1.5
+charset-normalizer==3.3.2
+rapidfuzz==3.9.7
+google-api-python-client==2.137.0
+google-auth-oauthlib==1.2.1
+google-auth-httplib2==0.2.0
+pytest==8.3.2
+openai
+Pillow==11.3.0
