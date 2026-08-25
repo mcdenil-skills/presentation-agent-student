@@ -13,12 +13,20 @@
 
 ## Быстрый старт
 
-### Шаг 1. Скачайте и откройте
+### Шаг 1. Попросите агента установить всё самому
 
-Скачайте репозиторий с GitHub по кнопке **Code → Download ZIP** или через Git:
+Рекомендуемый способ: откройте Claude Code или Codex и вставьте готовый промпт из [INSTALL-WITH-AI.md](INSTALL-WITH-AI.md). Агент сам скачает проект, создаст безопасные локальные шаблоны и проверит установку. Вам не придётся вводить команды в терминале.
+
+Важно: это должен быть локальный Claude Code или Codex с доступом к файлам, а не обычный чат в браузере.
+
+### Запасной способ: скачать ZIP
+
+Откройте [репозиторий на GitHub](https://github.com/Ntmib/presentation-agent-student), нажмите **Code → Download ZIP**, распакуйте архив и откройте полученную папку в Codex или Claude Code.
+
+Если вы уже умеете пользоваться Git:
 
 ```bash
-git clone https://github.com/<OWNER>/presentation-agent-student.git
+git clone https://github.com/Ntmib/presentation-agent-student.git
 cd presentation-agent-student
 ```
 

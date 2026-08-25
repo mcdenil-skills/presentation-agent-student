@@ -1,5 +1,9 @@
 # Установка
 
+## Самый простой способ
+
+Если вы не хотите работать с терминалом, используйте [установку одним промптом](INSTALL-WITH-AI.md). Claude Code или Codex выполнит безопасные шаги сам.
+
 ## 1. Что понадобится
 
 - Git;
@@ -8,10 +12,8 @@
 
 ## 2. Скачать репозиторий
 
-После публикации замените `<OWNER>` на имя владельца репозитория:
-
 ```bash
-git clone https://github.com/<OWNER>/presentation-agent-student.git
+git clone https://github.com/Ntmib/presentation-agent-student.git
 cd presentation-agent-student
 ```
 
