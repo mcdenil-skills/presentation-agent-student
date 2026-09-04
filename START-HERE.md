@@ -21,12 +21,12 @@
 
 ### Запасной способ: скачать ZIP
 
-Откройте [репозиторий на GitHub](https://github.com/Ntmib/presentation-agent-student), нажмите **Code → Download ZIP**, распакуйте архив и откройте полученную папку в Codex или Claude Code.
+Откройте [репозиторий на GitHub](https://github.com/mcdenil-skills/presentation-agent-student), нажмите **Code → Download ZIP**, распакуйте архив и откройте полученную папку в Codex или Claude Code.
 
 Если вы уже умеете пользоваться Git:
 
 ```bash
-git clone https://github.com/Ntmib/presentation-agent-student.git
+git clone https://github.com/mcdenil-skills/presentation-agent-student.git
 cd presentation-agent-student
 ```
 
