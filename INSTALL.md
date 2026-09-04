@@ -13,7 +13,7 @@
 ## 2. Скачать репозиторий
 
 ```bash
-git clone https://github.com/Ntmib/presentation-agent-student.git
+git clone https://github.com/mcdenil-skills/presentation-agent-student.git
 cd presentation-agent-student
 ```
 

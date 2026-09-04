@@ -13,7 +13,7 @@
 
 ```text
 Установи мне Presentation Agent из публичного репозитория:
-https://github.com/Ntmib/presentation-agent-student
+https://github.com/mcdenil-skills/presentation-agent-student
 
 Сделай всё сам через терминал и не проси меня вручную вводить команды.
 Установи проект в новую отдельную папку и ничего существующего не удаляй и не перезаписывай.

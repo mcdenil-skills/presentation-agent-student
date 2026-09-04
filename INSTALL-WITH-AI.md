@@ -20,7 +20,7 @@
 
 ```text
 Установи мне Presentation Agent из публичного репозитория:
-https://github.com/Ntmib/presentation-agent-student
+https://github.com/mcdenil-skills/presentation-agent-student
 
 Сделай установку сам через терминал. Не проси меня вручную вводить команды.
 
